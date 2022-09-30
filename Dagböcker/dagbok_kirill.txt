@@ -1,0 +1,10 @@
+v.2
+mån: Inget arbete
+
+tis: inget arbete
+
+ons: skapa github + invites
+
+tor: skapa kod för quizz, funktioner klara, 5 frågor
+
+fre: skapa trello profil + kanban mall
