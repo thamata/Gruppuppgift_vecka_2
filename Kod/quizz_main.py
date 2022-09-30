@@ -35,3 +35,5 @@ question("Vilket typ av programmeringsspråk är python?", "Low level", "High le
 question("Vilket år släpptes python?","","","","", 1991, 1991, int)
 question("Vilken symbol skriver man om man vill kommentera?", "?", "-", "#", "!", 3, 3, int)
 question("Vad heter skaparen av python?", "", "", "", "", "Guido van Rossum", "guido van rossum", str)
+question("Vad skriver man för att få ut kod i terminalen?","","","","", "print()", "print()", str)
+question("Vilken variabel returnerar siffror","str","int","bool","", 2, 2, int)
