@@ -1,3 +1,4 @@
+from email.policy import default
 import game
 
 
@@ -16,7 +17,18 @@ info = '''Game prompts:
 
 printC(f"Game info!\nThis is the map: \n{game_map}\nYour current position on the map is: [0]\n\n{info}\n\nTo start the game type [start]\nTo exit the game type [exit] during any input prompt")
 
+while True:
+    initial_input = input(str(">>"))
+    if(initial_input.lower() == "start"):
+        running = True
+        break
+    elif(initial_input.lower() == "exit"):
+        break
+    else:
+        print("//Invalid input")
+
 def player_input():
+    global running
     printC("//Which direction do you want to move: [right] [left] [up] [down]")
     direction = input(str(">>"))
     match direction.lower():
@@ -28,6 +40,10 @@ def player_input():
             game_map.moveUp()
         case "down":
             game_map.moveDown()
+        case "exit":
+            running = False
+        case _:
+            print("//Invalid input")
     printC(f"{game_map}\n//Your current position on the map is: [{game_map.currentpos}]")
 
 while running:
