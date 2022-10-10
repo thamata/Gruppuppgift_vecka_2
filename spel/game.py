@@ -1,23 +1,61 @@
-from operator import truediv
-import os
-import random
+import numpy as np
 
-import pygame as pg
-import main
-import classes
+class Player:
+    health = 100
 
-def main():
-    pg.init()
+class Map:
+    def __init__(self):
+        self.grid = np.array([[0,1,2,3],[4,5,6,7],[8,9,10,11],[12,13,14,15]])
 
-    screen = pg.display.set_mode((480,240))
+        self.currentpos = self.grid[1][0]
+    
+    def moveRight(self):
+        toMove = 0
+        for n in range(3):
+            if(self.currentpos != self.grid[n][3]):
+                toMove = 1
+            else:
+                return print("you cannot move further right")
+        self.currentpos += toMove
 
-    running = True
+    def moveLeft(self):
+        toMove = 0
+        for n in range(3):
+            if(self.currentpos != self.grid[n][0]):
+                toMove = 1
+            else:
+                return print("you cannot move further left")
+        self.currentpos -= toMove
 
-    while running:
-        for event in pg.event.get():
-            
-            if event.type == pg.QUIT:
-                running = False
+    def moveDown(self):
+        if(self.currentpos <= 11):
+            self.currentpos += 4
+        else:
+            return print("you cannot move further down")
+    def moveUp(self):
+        if(self.currentpos >= 4):
+            self.currentpos -= 4
+        else:
+            return print("you cannot move further up")
 
-if __name__ == "__main__":
-    main()
+instans = Map()
+
+print(instans.grid)
+print("pos:", instans.currentpos)
+instans.moveRight()
+print("pos:", instans.currentpos)
+instans.moveRight()
+print("pos:", instans.currentpos)
+instans.moveRight()
+print("pos:", instans.currentpos)
+instans.moveRight()
+print("pos:", instans.currentpos)
+
+instans.moveLeft()
+print("pos:", instans.currentpos)
+instans.moveLeft()
+print("pos:", instans.currentpos)
+instans.moveLeft()
+print("pos:", instans.currentpos)
+instans.moveLeft()
+print("pos:", instans.currentpos)
