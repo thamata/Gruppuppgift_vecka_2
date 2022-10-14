@@ -2,6 +2,7 @@ import numpy as np
 
 class Player:
     health = 100
+    attack = 10
 
 class Map:
     def __init__(self):
@@ -49,10 +50,15 @@ class Map:
             self.currentpos -= 4
         else:
             return print("you cannot move further up")
-    
-    def dialog(self):
-            match self.currentpos:
-                case 0:
-                    return "square 0"
-                case 1:
-                    return "square 1"
+
+class Enemy:
+    def __init__(self, name, health, attack):
+        self.name = name
+        self.health = health
+        self.attack = attack
+    def battle(self, pAttack, pHealth):
+        if(self.health > 0):
+            pHealth -= self.attack
+            self.health -= pAttack
+        elif(self.health <= 0):
+            return print("Enemy defeated")

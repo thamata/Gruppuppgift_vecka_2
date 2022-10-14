@@ -1,4 +1,3 @@
-from email.policy import default
 import game
 
 
@@ -10,6 +9,11 @@ def printC(str):
 running = False
 game_map = game.Map()
 game_player = game.Player()
+enemy_gargoyle = game.Enemy("Gargoyle", 20, 3)
+enemy_dog = game.Enemy("Dog", 10, 5)
+enemy_RabidDog = game.Enemy("Rabid dog", 10, 10)
+clearedGrids = [0]
+
 
 info = '''Game prompts: 
 >>[This means that the game is waiting for your input, input is not case sensitive]
@@ -44,9 +48,21 @@ def player_input():
             running = False
         case _:
             print("//Invalid input")
-    printC(f"{game_map}\n//Your current position on the map is: [{game_map.currentpos}]")
+    printC(f"{game_map}\n//Your current position on the map is: [{game_map.getPos()}]")
+
+def grid_battle():
+    if(game_map.currentpos in clearedGrids):
+        print("Grid cleared")
+    elif((game_map.currentpos in clearedGrids) == False):
+            print("Grid Not cleared")
+            match game_map.currentpos:
+                case 1 | 2 | 3 | 4:
+                    print(f"You encountered a {enemy_gargoyle.name}")
+                    enemy_gargoyle.battle(game_player.attack, game_player.health)
+                    print(f"Eh{enemy_gargoyle.health}")
+            clearedGrids.append(game_map.currentpos)
 
 while running:
     player_input()
-    print(game_map.dialog())
+    grid_battle()
     continue
